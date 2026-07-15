@@ -206,14 +206,6 @@ NE_NRVM_pipeline/
 
 ---
 
-## Terminology
-
-**Implemented:** Full working code that executes, reads inputs, processes data, and generates outputs. Scripts may be newly written or adapted from existing sources.
-
-**Ported:** Logic extracted from raw scripts (`raw_scripts_original/`) and adapted for the clean pipeline, including Windows→Linux path fixes, optparse CLI arguments, circRNA branch removal (where applicable), and Linux-first defaults. Functionally complete implementations.
-
----
-
 ## Implementation Status
 
 ### ✅ Complete (Fully Implemented)
