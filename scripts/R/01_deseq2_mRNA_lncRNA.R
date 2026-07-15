@@ -7,8 +7,7 @@
 # figure scripts, and soft clustering (Mfuzz) for temporal dynamics.
 #
 # Ported from Integrated_Bulk_v3_6_24h.R with Windows paths removed,
-# internal duplication removed, biotype annotation made reproducible from
-# the reference GTF + FEELnc output, and optparse added.
+# internal duplication removed, biotype annotation made reproducible and optparse added.
 
 suppressPackageStartupMessages({
   library(optparse)
