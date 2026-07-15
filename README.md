@@ -259,11 +259,11 @@ All 14 R scripts include:
 - [ ] **TFLink All reference:** Path/source + checksum (large file; coordinate upload separately)
 - [ ] Optional: Backup hard drive paths for FASTQ redundancy (for fastq_manifest.tsv)
 
-- [] Include characterization scripts and notebooks that have generated metadata files used in Rscript 01
+- [ ] Include characterization scripts and notebooks that have generated metadata files used in Rscript 01
 
 **Testing & Validation:**
 
-- [] Prepare conda environments based on template `*.yaml` files and then update with the official exported environment `*.yaml` file with consolidated dependencies and package versions.
+- [ ] Prepare conda environments based on template `*.yaml` files and then update with the official exported environment `*.yaml` file with consolidated dependencies and package versions.
 - [ ] **Full pipeline test run:** Execute complete pipeline (bash 00-12 + R 01-14) on real FASTQ data:
   - [ ] Verify all outputs generate without errors
   - [ ] Check figure quality and content against manuscript drafts
