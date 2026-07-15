@@ -1,0 +1,301 @@
+Carpetas de genomas
+Genoma Ensembl
+/media/storage2/surquiza_docs/genomes/rat/Ensembl/
+
+Carpeta es en GTF_files
+#RAT Ensembl
+/media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.chr.gtf
+/media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.gtf
+
+Rattus_norvegicus.mRatBN7.2.112.chr.gtf
+Rattus_norvegicus.mRatBN7.2.112.gtf
+
+#Para ratón y gencode
+/media/storage2/surquiza_docs/GTFs_files/mouse/gencode.vM35.annotation.gtf
+
+#Para ratón y ensembl
+/media/storage2/surquiza_docs/GTFs_files/mouse/Mus_musculus.GRCm39.112.chr.gtf
+
+Genomes Folder
+genomes
+
+Mouse
+/media/storage2/surquiza_docs/genomes/mouse/Ensembl/Mus_musculus.GRCm39.dna.primary_assembly.fa
+/media/storage2/surquiza_docs/genomes/mouse/Genecode/GRCm39.primary_assembly.genome.fa
+
+RAT
+#Ensembl primary assembly with all concate
+/media/storage2/surquiza_docs/genomes/rat/Ensembl/genome_primary_RN7.fa 
+
+#Toplevel
+/media/storage2/surquiza_docs/genomes/rat/Ensembl/genome_primary_RN7.fa/Rattus_norvegicus.mRatBN7.2.dna.toplevel.fa
+
+Carpetas con ÍNDICES
+#Para hisat2 ratón y gencode
+/media/storage2/surquiza_docs/index/hisat2/Mouse/Gencode/GRCm39
+
+#Para hisat2 ratón y ensembl
+/media/storage2/surquiza_docs/index/hisat2/Mouse/Ensembl/GRC39m
+
+#Para STAR ratón y gencode
+/media/storage2/surquiza_docs/index/STAR/Mouse/Gencode
+
+#Para STAR rata y ensembl
+/media/storage2/surquiza_docs/index/STAR/Rat/STAR_toplevel
+
+#Para Hisat2 rata y ensembl toplevel (NO USAR)
+/media/storage2/surquiza_docs/index/rat/Rn72
+
+#Para Hisat2 rata y ensembl primary assembly
+/media/storage2/surquiza_docs/index/hisat2/Rat/primary_assembly/Rn72
+
+#Create an index (hisat2 version)
+
+#Index hisat2 toplevel rat
+hisat2-build -p 16 /media/storage2/surquiza_docs/genomes/rat/Ensembl/Rattus_norvegicus.mRatBN7.2.dna.toplevel.fa /media/storage2/surquiza_docs/index/hisat2/Rat/Rn72top
+
+#Index hisat2 primary assembly rat
+hisat2-build -p 16 /media/storage2/surquiza_docs/genomes/rat/Ensembl/genome_primary_RN7.fa  Rn72
+
+Script Analysis Rata
+
+###fastqc_run RAT
+fastqc -t 20 SRR12932903_1.fastq SRR12932903_2.fastq --outdir /media/storage2/surquiza_docs/datasets_rat_HC/dataset_SR9/analisis_fastqc/
+
+###fastp PE
+ls *_1.fastq | awk '{split($0,x,"_1.fastq"); out=x[1]""x[2]""x[3]; print "fastp -i "$0" -I "out"_2.fastq -o ../trimming/"out"_1_filt.fastq -O ../trimming/"out"_2_filt.fastq --detect_adapter_for_pe -f 10 -F 10 -3 --cut_tail_mean_quality 28 -q 30 -w 8 -h ../trimming/"out".html"}' > run_fastp.sh
+
+####fastq SE
+ls *.fastq | awk '{split($0,x,".fastq"); out=x[1]""x[2]""x[3]; print "fastp -i "$0" -o ../trimming/"out"_filt.fastq -f 10 -3 --cut_tail_mean_quality 28 -q 30 -w 25 -h ../trimming/"out".html"}' > run_fastp.sh
+
+ls *_1.fastq | awk '{split($0,x,"_1.fastq"); out=x[1]""x[2]""x[3]; print "fastp -i "$0" -o ../trimming/"out"_1_filt.fastq -f 10 -3 --cut_tail_mean_quality 28 -q 30 -w 8 -h ../trimming/"out".html"}' > run_fastp.sh
+
+###fastqc_run post fastp
+fastqc -t 20 *_filt.fastq --outdir /media/storage2/surquiza_docs/datasets_rat_HC/analisis_fastqc/
+
+###run HISAT2 rat
+
+ls *_1_filt.fastq | awk '{split($0,x,"_1_filt.fastq"); out=x[1]""x[2]""x[3]; print "hisat2 --dta-cufflinks -p 15 -x /media/storage2/surquiza_docs/index/rat/Rn72 -1 "$0" -2 "out"_2_filt.fastq -S /media/storage2/surquiza_docs/datasets_rat_HC/dataset_Slc39a/alignment_data/"out".sam --summary-file /media/storage2/surquiza_docs/datasets_rat_HC/dataset_Slc39a/alignment_data/"out"_log.txt"}' > run_hisat.sh
+
+ls *_1_filt.fastq | awk '{split($0,x,"_1_filt.fastq"); out=x[1]""x[2]""x[3]; print "hisat2 --dta-cufflinks -p 15 -x /media/storage2/surquiza_docs/index/rat/Rn72 -1 "$0" -2 "out"_2_filt.fastq -S /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/alignment_data/"out".sam --summary-file /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/alignment_data/"out"_log.txt"}' > run_hisat.sh
+
+hisat2 --dta-cufflinks -p 22 -x /media/storage2/surquiza_docs/index/rat/Rn72 -1 SQ2_ln_1_filt.fastq -2 SQ2_ln_2_filt.fastq -S /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/alignment_data/SQ2_ln.sam --summary-file /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/alignment_data/SQ2_ln_log.txt
+
+hisat2 --dta-cufflinks -p 20 -x /media/storage2/surquiza_docs/index/hisat2/Rat/primary_assembly/Rn72 -1 SQ2_ln_1_filt.fastq -2 SQ2_ln_2_filt.fastq -S /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/alignment_hisat2/SQ2_ln.sam --summary-file /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/alignment_hisat2/SQ2_ln_log.txt
+
+ls *_1_filt.fastq.gz | awk '{split($0,x,"_1_filt.fastq.gz"); out=x[1]""x[2]""x[3]; print "hisat2 --dta-cufflinks -p 15 -x /media/storage2/surquiza_docs/index/rat/Rn72 -1 "$0" -2 "out"_2_filt.fastq.gz -S /media/storage2/surquiza_docs/datasets_rat_HC/dataset_Slc39a/alignment_data/"out".sam --summary-file /media/storage2/surquiza_docs/datasets_rat_HC/dataset_Slc39a/alignment_data/"out"_log.txt"}' > run_hisat.sh
+
+ls *_1_filt.fastq.gz | awk '{split($0,x,"_1_filt.fastq.gz"); out=x[1]""x[2]""x[3]; print "hisat2 --dta-cufflinks -p 24 -x /media/storage2/surquiza_docs/genomes/rat/Ensembl/genome_rn8/Rn8 -1 "$0" -2 "out"_2_filt.fastq.gz -S /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/alingment_hisat2new/"out".sam --summary-file /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/alingment_hisat2new/"out"_log.txt"}' > run_hisat.sh
+
+hisat2 --dta-cufflinks -p 20 -x  /media/storage2/surquiza_docs/genomes/rat/Ensembl/Rn8 -1 SQ2_ln_1_filt.fastq -2 SQ2_ln_2_filt.fastq -S /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/alignment_hisat2new/SQ2_ln.sam --summary-file /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/alignment_hisat2new/SQ2_ln_log.txt
+
+###run hisat2 rat SE
+ls *filt.fastq | awk '{split($0,x,"_filt.fastq"); out=x[1]""x[2]""x[3]; print "hisat2 --dta-cufflinks -p 30 -x /media/storage/datasets/indexes/hisat2_index/Rattus_norvergicus/mRatBN7_2/mRatBN7_2 -U "$0" -S ../alignment/"out".sam --summary-file ../alignment/"out"_log.txt"}' > run_hisat.sh
+
+ls *filt.fastq | awk '{split($0,x,"_filt.fastq"); out=x[1]""x[2]""x[3]; print "hisat2 --dta-cufflinks -p 30 --rna-strandness R -x /media/storage/datasets/indexes/hisat2_index/Rattus_norvergicus/mRatBN7_2/mRatBN7_2 -U "$0" -S ../alignment/"out".sam --summary-file ../alignment/"out"_log.txt"}' > run_hisat2.sh
+
+###sam to bam
+ls *sam | awk '{out=$0; gsub("sam","bam",out); print "samtools view -b -S "$0"|samtools sort -o "out""}' > run_samtools.sh
+
+### featureCounts gene id (rat)
+featureCounts -T 15 -p --countReadPairs -t exon -g gene_id -a /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.chr.gtf -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/counts_data/fcounts_C24_NE24.txt SQ3_ln.bam SQ15_ln.bam H3_ln.bam SQ4_ln.bam SQ8_ln.bam SQ16_ln.bam H4_ln.bam
+
+### featurecounts transcript id
+featureCounts -T 20 -p -t exon -g transcript_id -a /media/storage/datasets/gtf/rat/ucsc_rattus_norvegicus_rn7_annotation.gtf -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_Slc39a/counts/featureCounts_Slc39a_transcript.txt SRR14699664.bam SRR14699665.bam SRR14699666.bam SRR14699667.bam SRR14699668.bam SRR14699669.bam
+
+STRINGTIE
+stringtie -f 0.05 -m 200 --conservative -t -s 3.0 -p 24 -G /media/storage1/datasets/gtf/rat/Rattus_norvegicus.mRatBN7.2.ensembl.gtf -o ../stringtie/H2_ln.gtf H2_ln.bam
+
+stringtie -f 0.05 -B -e --conservative -t -s 3.0 -p 20 -G /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/stringtie/transcripts_merge_lncRNAs_NE.gtf -o ../stringtie_EB/H2_ln.gtf H2_ln.bam
+
+Datos NAPL5
+
+Run hisat2
+
+ls *_1_filt.fastq | awk '{split($0,x,"_1_filt.fastq"); out=x[1]""x[2]""x[3]; print "hisat2 --dta-cufflinks -p 15 -x /media/storage2/surquiza_docs/index/rat/Rn72 -1 "$0" -2 "out"_2_filt.fastq -S /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NAP1L5/alignment_data/"out".sam --summary-file /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NAP1L5/alignment_data/"out"_log.txt"}' > run_hisat.sh
+
+featureCounts -T 15 -p --countReadPairs -t exon -g gene_id -a /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.chr.gtf -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NAP1L5/counts/fcounts_Napl5.txt SRR14404330.bam SRR14404331.bam SRR14404332.bam SRR14404333.bam SRR14404334.bam SRR14404335.bam
+
+Datos Scl39
+
+ls *_1_filt.fastq | awk '{split($0,x,"_1_filt.fastq"); out=x[1]""x[2]""x[3]; print "hisat2 --dta-cufflinks -p 15 -x /media/storage2/surquiza_docs/index/rat/Rn72 -1 "$0" -2 "out"_2_filt.fastq -S /media/storage2/surquiza_docs/datasets_rat_HC/dataset_Slc39a/alignment_data/"out".sam --summary-file /media/storage2/surquiza_docs/datasets_rat_HC/dataset_Slc39a/alignment_data/"out"_log.txt"}' > run_hisat.sh
+
+Datos SR9
+
+ls *filt.fastq | awk '{split($0,x,"_filt.fastq"); out=x[1]""x[2]""x[3]; print "hisat2 --dta-cufflinks -p 15 --rna-strandness R -x /media/storage2/surquiza_docs/index/rat/Rn72 -U "$0" -S /media/storage2/surquiza_docs/datasets_rat_HC/dataset_SR9/alignment_data/"out".sam --summary-file /media/storage2/surquiza_docs/datasets_rat_HC/dataset_SR9/alignment_data/"out"_log.txt"}' > run_hisat2.sh
+
+featureCounts -T 15 -p --countReadPairs -t exon -g gene_id -a /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.chr.gtf -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/counts_data/fcounts_C24_NE24.txt SQ3_ln.bam SQ15_ln.bam H3_ln.bam SQ4_ln.bam SQ8_ln.bam SQ16_ln.bam H4_ln.bam
+
+Step by Step using Stringtie
+
+#Assembly transcripts using default parameters and guided
+stringtie -p 15 -G /media/storage1/datasets/gtf/rat/Rattus_norvegicus.mRatBN7.2.ensembl.gtf -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/stringtie_output/transcripts_SQ3_ln.gtf
+
+stringtie -p 15 -G /media/storage1/datasets/gtf/rat/Rattus_norvegicus.mRatBN7.2.ensembl.gtf -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/stringtie_output/H1_ln.gtf H1_ln.bam
+
+ls *.bam | awk '{name=$1; gsub(".bam",".gtf",name); print "stringtie -p 15 -G /media/storage1/datasets/gtf/rat/Rattus_norvegicus.mRatBN7.2.ensembl.gtf -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/stringtie_output/"name" " $1}' > stringtie2.sh
+
+stringtie --merge -G /media/storage1/datasets/gtf/rat/Rattus_norvegicus.mRatBN7.2.ensembl.gtf -p 15 -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/merge_stringtie/C24_NE24_transcripts_merge.gtf SQ3_ln_c.gtf SQ15_ln_c.gtf H3_ln_c.gtf SQ4_ln_c.gtf SQ8_ln_c.gtf SQ16_ln_c.gtf H4_ln_c.gtf
+
+gffcompare -r /media/storage1/datasets/gtf/rat/Rattus_norvegicus.mRatBN7.2.ensembl.gtf -o merged_C24_NE24 C24_NE24_transcripts_merge.gtf
+
+nano merged.stats
+
+awk '!/^#/ && $3=="transcript"' C24_NE24_transcripts_merge.gtf |sort -u|grep -v "ref_gene_id"| head #mirar los nuevos
+awk '!/^#/ && $3=="transcript"' C24_NE24_transcripts_merge.gtf |sort -u|grep -v "ref_gene_id"|wc -l  #contar los nuevos
+15915
+grep -v "ref_gene_id"  C24_NE24_transcripts_merge.gtf > transcripts_merge_NE24_news.gtf  #nuevos transcritos en gtf
+
+awk '$3=="transcript" && $5-$4 > 200 {print}' /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/merge_stringtie/merged.annotated.gtf > potenciales_nuevos_transcritos_C24.gtf
+
+###conservative
+ls *.bam | awk '{name=$1; gsub(".bam",".gtf",name); print "stringtie -p 25 -G /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.gtf --conservative -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/stringtie_output/"name" " $1}' > stringtie3.sh
+
+stringtie -p 20 -G /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.gtf --conservative -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NAP1L5/stringtie_output/SRR14404330.gtf SRR14404330.bam
+
+stringtie archivo.bam -p 15 -conservative -G /PATH/ANOTACIÓN.gtf -o /RUTA_OUTPUT/ARCHIVO.gtf
+
+stringtie --merge -G /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.gtf -p 20 -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/merge_new/C24_NE24_transcripts_merge_4.gtf SQ3_ln.gtf SQ7_ln.gtf SQ15_ln.gtf H3_ln.gtf SQ4_ln.gtf SQ8_ln.gtf SQ16_ln.gtf H4_ln.gtf
+
+merge_new/C24_NE24_transcripts_merge_4.gtf
+
+###Haremos 2 opciones de merge (default) y de expresión baja
+
+
+#Assembly transcripts using default parameters and not guided approach
+ls *bam | awk '{name=$1; gsub(".bam",".gtf",name); print "stringtie -p 15 -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/stringtie_output/not_guided_default/"name" " $1}' > stringtie3.sh
+
+Los transcritos nuevos por awk se toman del gtf annotated del merged y de ahí en adelante se hace el análisis
+
+gffcompare -r /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.gtf -o merged_C24_NE24 C24_NE24_transcripts_merge.gtf
+
+nano merged.stats
+
+awk '!/^#/ && $3=="transcript"' merged_C24_NE24.annotated.gtf |sort -u|grep -v "ref_gene_id"| head #mirar los nuevos
+awk '!/^#/ && $3=="transcript"' merged_C24_NE24.annotated.gtf |sort -u|grep -v "ref_gene_id"|wc -l  #contar los nuevos
+1663
+awk '!/^#/ && $3=="transcript"' C24_NE24_transcripts_merge.gtf |sort -u|grep -v "ref_gene_id"|wc -l  #contar los nuevos
+15012
+#nuevos transcritos en gtf
+grep -v "ref_gene_id"  merged_C24_NE24.annotated.gtf > transcripts_merge_NE24_news_annoated.gtf
+
+awk '$3=="transcript" && $5-$4 > 200 {print}' /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/merge_stringtie/merged_C24_NE24.annotated.gtf > potenciales_nuevos_transcritos_C24_NE24.gtf
+
+# Convertir GTF a FASTA usando gffread
+gffread /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/merge_stringtie/C24_NE24_transcripts_merge.gtf -g /media/storage2/surquiza_docs/genomes/rat/Ensembl/genome_primary_RN7.fa -w /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/merge_stringtie/merged_transcripts_C24_NE24_c.fasta
+
+#Convertir en fasta las secuencias de RNA del annotated merged de gffcompare
+gffread /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/merge_stringtie/merged_C24_NE24.annotated.gtf -g /media/storage2/surquiza_docs/genomes/rat/Ensembl/genome_primary_RN7.fa -w /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/merge_stringtie/merged_annotated_transcripts_C24_NE24_c.fasta
+
+stringtie --merge -G /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.gtf -p 20 -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/merge_new/NE6_NE24_transcripts_merge_8.gtf H1_ln.gtf SQ13_ln.gtf SQ1_ln.gtf H2_ln SQ14_ln.gtf SQ2_ln.gtf SQ6_ln.gtf SQ3_ln.gtf SQ7_ln.gtf SQ15_ln.gtf H3_ln.gtf SQ4_ln.gtf SQ8_ln.gtf SQ16_ln.gtf H4_ln.gtf
+
+Corrida FEELnc (6 y 24 h)
+FEELnc_filter.pl -i Merged_NE6_NE24_4.annotated.gtf -a /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.gtf -b transcript_biotype=protein_coding --monoex=1 --outlog=lncRNA_NE6_NE24.log > /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/feelnc_output2/candidate_lncRNA_NE6_NE24.gtf
+
+FEELnc_codpot.pl -i candidate_lncRNA_NE6_NE24.gtf -a /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.gtf -g /media/storage2/surquiza_docs/genomes/rat/Ensembl/chroms/  -b transcript_biotype=protein_coding -b transcript_status=KNOWN --mode=intergenic
+
+Module 3
+
+FEELnc_classifier.pl -i candidate_lncRNA_C24_NE24.gtf.lncRNA.gtf -a combined_annotation_C24_NE24.gtf --window=200 --maxwindow=10000 > lncRNA_classes_NE6_NE24_200_1000.txt
+
+CORRIDA PERO CON MERGE
+M1
+FEELnc_filter.pl -i NE6_NE24_transcripts_merge_8.gtf -a /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.gtf -b transcript_biotype=protein_coding --monoex=1 --outlog=lncRNAs_NE6_NE24.log > /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/feelnc_output2/candidate_lncRNAs_NE6_NE24_oct.gtf
+M2
+FEELnc_codpot.pl -i candidate_lncRNAs_NE6_NE24_oct.gtf -a /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.gtf -g /media/storage2/surquiza_docs/genomes/rat/Ensembl/chroms/  -b transcript_biotype=protein_coding -b transcript_status=KNOWN --mode=intergenic
+M3
+FEELnc_classifier.pl -i candidate_lncRNA_C24_NE24.gtf.lncRNA.gtf -a combined_annotation_C24_NE24.gtf --window=200 --maxwindow=50000 > lncRNA_classes_NE6_NE24_200_50000.txt
+
+FEELnc_classifier.pl -i candidate_lncRNAs_NE6_NE24_oct.gtf.lncRNA.gtf -a /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.gtf --window=200 --maxwindow=50000 > lncRNA_classes_NE6_NE24_200_50kb.txt
+
+FEELnc_classifier.pl -i candidate_lncRNAs_NE6_NE24_oct.gtf.lncRNA.gtf -a /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.gtf --window=1000 --maxwindow=50000 > lncRNA_classes_NE6_NE24_1kb_50kb.txt
+
+CORRIDA PERO CON ANNOTATED
+M1
+FEELnc_filter.pl -i Merged_NE6_NE24_4.annotated.gtf -a /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.gtf -b transcript_biotype=protein_coding --monoex=1 --outlog=lncRNAs_NE6_NE24_annotated.log > /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/feelnc_output2/cand_lncRNAs_NE6_NE24_annotated.gtf
+M2
+FEELnc_codpot.pl -i cand_lncRNAs_NE6_NE24_annotated.gtf -a /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.gtf -g /media/storage2/surquiza_docs/genomes/rat/Ensembl/chroms/  -b transcript_biotype=protein_coding -b transcript_status=KNOWN --mode=intergenic
+M3
+FEELnc_classifier.pl -i cand_lncRNAs_NE6_NE24_annotated.gtf.lncRNA.gtf -a /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.gtf --window=200 --maxwindow=50000 > lncRNA_classes_NE6_24_200_50kb_annotated.txt
+
+CORRIDA ANNOTATED CON ALLMERGE_PE (26/11/24)
+M1
+FEELnc_filter.pl -i merge_allPE.annotated.gtf -a /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.gtf -b transcript_biotype=protein_coding --monoex=1 --outlog=lncRNAs_AllPE_annotated.log > /media/storage2/surquiza_docs/datasets_rat_HC/dataset_SR9/feelnc_output2/cand_lncRNAs_ALLPE_annotated.gtf
+M2
+FEELnc_codpot.pl -i cand_lncRNAs_ALLPE_annotated.gtf -a /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.gtf -g /media/storage2/surquiza_docs/genomes/rat/Ensembl/chroms/  -b transcript_biotype=protein_coding -b transcript_status=KNOWN --mode=intergenic
+M3
+FEELnc_classifier.pl -i cand_lncRNAs_ALLPE_annotated.gtf.lncRNA.gtf -a /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.mRatBN7.2.112.gtf --window=200 --maxwindow=50000 > lncRNA_classes_allPE_200_50kb_annotated.txt
+
+Mover los archivos a Genomes y crear una carpeta de transcriptomes (transcriptome_salmon)
+
+Generar los índices
+salmon index -t gentrome_CNE24_H.fa -i transcripts_CNE24_H_index --decoys decoys.txt -p 6 -k 31
+salmon index -t gentrome_CNE24_ST.fa -i transcripts_CNE24_ST_index --decoys decoys.txt -p 6 -k 31
+salmon index -t gentrome_CNE624_8_H.fa -i transcripts_CNE624_H_index --decoys decoys.txt -p 6 -k 31
+salmon index -t gentrome_CNE624_8_ST.fa -i transcripts_CN624_ST_index --decoys decoys.txt -p 6 -k 31
+
+Make the alignment and quantification
+ salmon_quant.sh
+
+Primero STAR con 4
+salmon quant -i transcripts_CNE24_ST_index -l A -1 H1_ln_1_filt.fastq.gz -2 H1_ln_2_filt.fastq.gz -p 8 --validateMappings -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/transcript_quant/transcripts_quant_ST_H1
+
+salmon quant -i transcripts_CNE24_ST_index -l A -1 H2_ln_1_filt.fastq.gz -2 H2_ln_2_filt.fastq.gz -p 8 --validateMappings -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/transcript_quant/transcripts_quant_ST_H2
+
+salmon quant -i transcripts_CNE24_ST_index -l A -1 H3_ln_1_filt.fastq.gz -2 H3_ln_2_filt.fastq.gz -p 8 --validateMappings -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/transcript_quant/transcripts_quant_ST_H3
+
+salmon quant -i transcripts_CNE24_ST_index -l A -1 H4_ln_1_filt.fastq.gz -2 H4_ln_2_filt.fastq.gz -p 8 --validateMappings -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/transcript_quant/transcripts_quant_ST_H4
+
+salmon quant -i transcripts_CNE24_ST_index -l A -1 SQ1_ln_1_filt.fastq.gz -2 SQ1_ln_2_filt.fastq.gz -p 8 --validateMappings -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/transcript_quant/transcripts_quant_ST_SQ1
+
+salmon quant -i transcripts_CNE24_ST_index -l A -1 SQ2_ln_1_filt.fastq.gz -2 SQ2_ln_2_filt.fastq.gz -p 8 --validateMappings -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/transcript_quant/transcripts_quant_ST_SQ2
+
+salmon quant -i transcripts_CNE24_ST_index -l A -1 SQ3_ln_1_filt.fastq.gz -2 SQ3_ln_2_filt.fastq.gz -p 8 --validateMappings -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/transcript_quant/transcripts_quant_ST_SQ3
+
+salmon quant -i transcripts_CNE24_ST_index -l A -1 SQ4_ln_1_filt.fastq.gz -2 SQ4_ln_2_filt.fastq.gz -p 8 --validateMappings -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/transcript_quant/transcripts_quant_ST_SQ4
+
+salmon quant -i transcripts_CNE24_ST_index -l A -1 SQ5_ln_1_filt.fastq.gz -2 SQ5_ln_2_filt.fastq.gz -p 8 --validateMappings -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/transcript_quant/transcripts_quant_ST_SQ5
+
+salmon quant -i transcripts_CNE24_ST_index -l A -1 SQ6_ln_1_filt.fastq.gz -2 SQ6_ln_2_filt.fastq.gz -p 8 --validateMappings -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/transcript_quant/transcripts_quant_ST_SQ6
+
+salmon quant -i transcripts_CNE24_ST_index -l A -1 SQ7_ln_1_filt.fastq.gz -2 SQ7_ln_2_filt.fastq.gz -p 8 --validateMappings -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/transcript_quant/transcripts_quant_ST_SQ7
+
+salmon quant -i transcripts_CNE24_ST_index -l A -1 SQ8_ln_1_filt.fastq.gz -2 SQ8_ln_2_filt.fastq.gz -p 8 --validateMappings -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/transcript_quant/transcripts_quant_ST_SQ8
+
+salmon quant -i transcripts_CNE24_ST_index -l A -1 SQ13_ln_1_filt.fastq.gz -2 SQ13_ln_2_filt.fastq.gz -p 8 --validateMappings -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/transcript_quant/transcripts_quant_ST_SQ13
+
+salmon quant -i transcripts_CNE24_ST_index -l A -1 SQ14_ln_1_filt.fastq.gz -2 SQ14_ln_2_filt.fastq.gz -p 8 --validateMappings -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/transcript_quant/transcripts_quant_ST_SQ14
+
+salmon quant -i transcripts_CNE24_ST_index -l A -1 SQ15_ln_1_filt.fastq.gz -2 SQ15_ln_2_filt.fastq.gz -p 8 --validateMappings -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/transcript_quant/transcripts_quant_ST_SQ15
+
+salmon quant -i transcripts_CNE24_ST_index -l A -1 SQ16_ln_1_filt.fastq.gz -2 SQ16_ln_2_filt.fastq.gz -p 8 --validateMappings -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/transcript_quant/transcripts_quant_ST_SQ16
+
+ls -1 *_ln_1_filt.fastq | sed 's/_ln_1_filt.fastq//' | awk '{printf "salmon quant -i transcripts_CNE24_ST_index -l A -1 %s_ln_1_filt.fastq -2 %s_ln_2_filt.fastq -p 8 --validateMappings -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/transcript_quant/transcripts_quant_ST_%s\n", $0, $0, $0}' > run_salmon.sh
+
+Nota: falta el directorio completo del indice si se corre en la carpeta de trimming
+
+12/08/25
+Corriendo los indices de salmon
+
+Se está trabajando en un ambiente de conda del server que tiene la versión 1.10.3 de salmon
+Y ahora se está creando el índice de 4 y H con los k 31
+
+Ahora correr los salmon quant
+ls -1 *_ln_1_filt.fastq | sed 's/_ln_1_filt.fastq//' | awk '{printf "salmon quant -i transcripts_CNE24_H_index -l A -1 %s_ln_1_filt.fastq -2 %s_ln_2_filt.fastq -p 8 --validateMappings -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/transcript_quant/transcripts_quant_H_%s\n", $0, $0, $0}' > run_salmon.sh
+
+salmon quant -i /media/storage2/surquiza_docs/genomes/rat/Ensembl/transcriptome_salmon/transcripts_CNE24_H_index -l A -1 H1_ln_1_filt.fastq -2 H1_ln_2_filt.fastq -p 8 --validateMappings -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/transcript_quant/transcripts_quant_H_H1
+
+ls -1 *_ln_1_filt.fastq | sed 's/_ln_1_filt.fastq//' | awk '{printf "salmon quant -i /media/storage2/surquiza_docs/genomes/rat/Ensembl/transcriptome_salmon/transcripts_CNE624_H_index -l A -1 %s_ln_1_filt.fastq -2 %s_ln_2_filt.fastq -p 8 --validateMappings -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/transcript_quant/transcripts_quant_624_H_%s\n", $0, $0, $0}' > run_salmon2.sh
+
+Para 6 y 24 hrs
+Modulo 1
+
+FEELnc_filter.pl -i merged_CNE624_8_rn8_H.annotated.gtf -a /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.GRCr8.114.gtf -b transcript_biotype=protein_coding --monoex=1 --outlog=lncRNAs_CNE624_8_rn8_H_annotated.log > /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/lncRNA/feelnc_output3/cand_lncRNAs_CNE624_rn8_8_annotated.gtf
+
+M2
+
+
+
+M3
+FEELnc_classifier.pl -i cand_lncRNAs_CNE624_rn8_8_annotated.gtf.lncRNA.gtf -a /media/storage2/surquiza_docs/GTFs_files/rat/Rattus_norvegicus.GRCr8.114.gtf --window=1000 --maxwindow=10
+0000 > lncRNA_classes_CNE624_rn8_8_annotated_1kb_100kb.txt

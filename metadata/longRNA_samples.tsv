@@ -1,0 +1,17 @@
+sample_id	condition	time	treatment	replicate	library_type	layout	fastq_1	fastq_2	include_final_analysis	notes
+H1_ln	Ctrl6	6h	Control	1	longRNA	paired-end	TO_FILL_exact_filename_or_path_R1	TO_FILL_exact_filename_or_path_R2	yes	Exact FASTQ filenames/paths must be filled from server or hard drive.
+SQ13_ln	Ctrl6	6h	Control	2	longRNA	paired-end	TO_FILL_exact_filename_or_path_R1	TO_FILL_exact_filename_or_path_R2	yes	Exact FASTQ filenames/paths must be filled from server or hard drive.
+SQ1_ln	Ctrl6	6h	Control	3	longRNA	paired-end	TO_FILL_exact_filename_or_path_R1	TO_FILL_exact_filename_or_path_R2	yes	Exact FASTQ filenames/paths must be filled from server or hard drive.
+SQ5_ln	Ctrl6	6h	Control	4	longRNA	paired-end	TO_FILL_exact_filename_or_path_R1	TO_FILL_exact_filename_or_path_R2	yes	Exact FASTQ filenames/paths must be filled from server or hard drive.
+H2_ln	NE6	6h	NE	1	longRNA	paired-end	TO_FILL_exact_filename_or_path_R1	TO_FILL_exact_filename_or_path_R2	yes	Exact FASTQ filenames/paths must be filled from server or hard drive.
+SQ14_ln	NE6	6h	NE	2	longRNA	paired-end	TO_FILL_exact_filename_or_path_R1	TO_FILL_exact_filename_or_path_R2	yes	Exact FASTQ filenames/paths must be filled from server or hard drive.
+SQ2_ln	NE6	6h	NE	3	longRNA	paired-end	TO_FILL_exact_filename_or_path_R1	TO_FILL_exact_filename_or_path_R2	yes	Exact FASTQ filenames/paths must be filled from server or hard drive.
+SQ6_ln	NE6	6h	NE	4	longRNA	paired-end	TO_FILL_exact_filename_or_path_R1	TO_FILL_exact_filename_or_path_R2	yes	Exact FASTQ filenames/paths must be filled from server or hard drive.
+SQ3_ln	Ctrl24	24h	Control	1	longRNA	paired-end	TO_FILL_exact_filename_or_path_R1	TO_FILL_exact_filename_or_path_R2	yes	Exact FASTQ filenames/paths must be filled from server or hard drive.
+SQ15_ln	Ctrl24	24h	Control	2	longRNA	paired-end	TO_FILL_exact_filename_or_path_R1	TO_FILL_exact_filename_or_path_R2	yes	Exact FASTQ filenames/paths must be filled from server or hard drive.
+H3_ln	Ctrl24	24h	Control	3	longRNA	paired-end	TO_FILL_exact_filename_or_path_R1	TO_FILL_exact_filename_or_path_R2	yes	Exact FASTQ filenames/paths must be filled from server or hard drive.
+SQ7_ln	Ctrl24	24h	Control	4	longRNA	paired-end	TO_FILL_exact_filename_or_path_R1	TO_FILL_exact_filename_or_path_R2	yes	Exact FASTQ filenames/paths must be filled from server or hard drive.
+SQ4_ln	NE24	24h	NE	1	longRNA	paired-end	TO_FILL_exact_filename_or_path_R1	TO_FILL_exact_filename_or_path_R2	yes	Exact FASTQ filenames/paths must be filled from server or hard drive.
+SQ8_ln	NE24	24h	NE	2	longRNA	paired-end	TO_FILL_exact_filename_or_path_R1	TO_FILL_exact_filename_or_path_R2	yes	Exact FASTQ filenames/paths must be filled from server or hard drive.
+SQ16_ln	NE24	24h	NE	3	longRNA	paired-end	TO_FILL_exact_filename_or_path_R1	TO_FILL_exact_filename_or_path_R2	yes	Exact FASTQ filenames/paths must be filled from server or hard drive.
+H4_ln	NE24	24h	NE	4	longRNA	paired-end	TO_FILL_exact_filename_or_path_R1	TO_FILL_exact_filename_or_path_R2	yes	Exact FASTQ filenames/paths must be filled from server or hard drive.

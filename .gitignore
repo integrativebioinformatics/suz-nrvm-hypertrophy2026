@@ -1,0 +1,58 @@
+# Reference files (large, downloaded separately)
+references/*.fasta
+references/*.fasta.gz
+references/*.fa
+references/*.fa.gz
+references/*.gtf
+references/*.gtf.gz
+references/*.tsv
+
+# FASTQ files (stored on server/external drive)
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+
+# Pipeline outputs
+results/
+output/
+*.out
+*.log
+
+# Conda environments (user-specific, not committed)
+.conda/
+condaenv.txt
+
+# Temporary files
+*.tmp
+*.temp
+*~
+.DS_Store
+Thumbs.db
+
+# R session artifacts
+.Rhistory
+.Rdata
+.Ruserdata
+*.Rproj
+.Rproj.user/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.*~
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Data outputs (optional: can be regenerated)
+# Uncomment if you want to exclude all analysis outputs
+# results/
+# *.csv
+# *.tsv
+# *.xlsx
+# *.pdf
+# *.png

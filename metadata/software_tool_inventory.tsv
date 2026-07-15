@@ -1,0 +1,14 @@
+tool	version	type	purpose	pipeline_step	notes
+FastQC	TO_FILL or latest used	command-line	Raw and trimmed FASTQ QC	longRNA/smallRNA preprocessing	include conda package if used
+fastp	v0.22.0 from manuscript	command-line	Adapter/quality trimming	longRNA preprocessing; maybe smallRNA QC/trimming	verify command parameters
+HISAT2	v2.2.1 from manuscript	command-line	Genome alignment	longRNA alignment	Linux/conda
+Samtools	v1.21 from manuscript	command-line	SAM/BAM conversion/sorting/indexing	longRNA alignment outputs	Linux/conda
+StringTie	v3.0.0 from manuscript	command-line	Transcript assembly/reconstruction	novel transcript/lncRNA layer	Linux/conda
+GffCompare	v0.12.9 from manuscript	command-line	Compare/annotate reconstructed transcriptome	novel transcript classification	often comes with gffcompare/gffread
+gffread	TO_FILL	command-line	Extract transcript FASTA / GTF utilities	Salmon/gentrome and transcriptome prep	verify version
+Salmon	v1.10.3 from manuscript	command-line	Transcript quantification	longRNA quantification	Linux/conda
+FEELnc	v0.2 from manuscript	command-line/perl	lncRNA filtering/coding potential/classification	novel lncRNA identification	may require specific Perl dependencies
+miRge3.0	v3.0 from manuscript	command-line/python	miRNA identification/quantification	smallRNA pipeline	final database should be miRBase based on actual run
+IntaRNA	v3.4.1 from manuscript	command-line	lncRNA-miRNA binding prediction	ceRNA module pipeline	separate conda env may be easiest
+Cytoscape	v3.10.3 from manuscript	desktop app	Network visualization	optional/manual visualization; not required for automated figures unless layout files are provided	do not put in conda pipeline
+R	TO_FILL	R	DESeq2, enrichment, plotting	most downstream analyses	record sessionInfo

@@ -1,0 +1,7 @@
+miRge3.0 -s /home/surquizaz/Documents/Programas/miRge3_Lib/miRNA_NE/SQ3_mi.fastq.gz, SQ15_mi.fastq.gz, H3_mi.fastq.gz, SQ7_mi.fastq.gz, SQ4_mi.fastq.gz, SQ16_mi.fastq.gz, SQ8_mi.fastq.gz, H4_mi.fastq.gz -lib /home/surquizaz/Documents/Programas/miRge3_Lib -on rat -db mirbase -o /home/surquizaz/Documents/Programas/miRge3_Lib/output_24NE -a 'AGATCGGAAGAGCACACGTCT' -g 'GTTCAGAGTTCTACAGTCCGACGATC' -cpu 5 -dex -mdt DESmetadata_24h.csv
+
+SRR8497647.fastq,SRR8497648.fastq,SRR8497649.fastq,SRR8497650.fastq,SRR8497651.fastq,SRR8497652.fastq,SRR8497653.fastq,SRR8497654.fastq
+
+miRge3.0 -s /home/surquizaz/Documents/Programas/miRge3_Lib/miRNA_NE/SQ3_mi.fastq.gz, SQ15_mi.fastq.gz, H3_mi.fastq.gz, SQ7_mi.fastq.gz, SQ4_mi.fastq.gz, SQ16_mi.fastq.gz, SQ8_mi.fastq.gz, H4_mi.fastq.gz -lib /home/surquizaz/Documents/Programas/miRge3_Lib -on rat -db mirbase -o /home/surquizaz/Documents/Programas/miRge3_Lib/output_24NE -a 'AGATCGGAAGAGCACACGTCT' -g 'GTTCAGAGTTCTACAGTCCGACGATC' -cpu 8 -dex -mdt DESmetadata_24h.csv -mEC
+
+miRge3.0 -s /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/miRNA/SQ3_mi.fastq.gz, SQ15_mi.fastq.gz, H3_mi.fastq.gz, SQ7_mi.fastq.gz, SQ4_mi.fastq.gz, SQ16_mi.fastq.gz, SQ8_mi.fastq.gz, H4_mi.fastq.gz -lib /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/miRNA/mirge_lib -on rat -db mirbase -o /media/storage2/surquiza_docs/datasets_rat_HC/dataset_NE_cardios/miRNA/miRge/ -a 'AGATCGGAAGAGCACACGTCT' -g 'GTTCAGAGTTCTACAGTCCGACGATC' -cpu 8 -dex -mdt DESmetadata_24h.csv -mEC > mirge24.sh

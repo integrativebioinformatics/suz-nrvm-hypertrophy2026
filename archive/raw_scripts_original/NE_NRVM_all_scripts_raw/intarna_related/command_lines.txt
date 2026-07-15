@@ -1,0 +1,6 @@
+709  IntaRNA --mode=M Candidates_lncRNA_6h_UP.fa -q miRNAs_DOWN_6hr.fa --outMode=C --out Interact_LncUP_miDOWN_6h_modeM.csv
+  710  IntaRNA --mode=M -t Candidates_lncRNA_6h_UP.fa -q miRNAs_DOWN_6hr.fa --outMode=C --out Interact_LncUP_miDOWN_6h_modeM.csv
+  711  IntaRNA --mode=M -t Candidates_lncRNA_6h_DOWN.fa -q miRNAs_UP_6hr.fa --outMode=C --out Interact_LncDOWN_miUP_6h_modeM.csv
+  712  IntaRNA --mode=M -t Candidates_lncRNA_24h_UP.fa -q miRNAs_DOWN_24hr.fa --outMode=C --out Interact_LncUP_miDOWN_24h_modeM.csv
+  713  conda activate IntaRNA_lncRNA
+  715  IntaRNA --mode=M -t Candidates_lncRNA_24h_DOWN.fa -q miRNAs_UP_24hr.fa --outMode=C --out Interact_LncDOWN_miUP_24h_modeM.csv

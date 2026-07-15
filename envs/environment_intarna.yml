@@ -1,0 +1,10 @@
+name: env_intarna
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - intarna
+  # Common utilities
+  - python
+  - pip

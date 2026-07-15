@@ -1,0 +1,23 @@
+name: env_qc_align
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  # QC & trimming
+  - fastqc
+  - fastp
+  # Alignment & SAM/BAM handling
+  - hisat2
+  - samtools
+  # Transcript assembly & annotation
+  - stringtie
+  - gffcompare
+  - gffread
+  # Quantification
+  - salmon
+  # lncRNA classification
+  - feelnc
+  # Utilities
+  - curl
+  - wget

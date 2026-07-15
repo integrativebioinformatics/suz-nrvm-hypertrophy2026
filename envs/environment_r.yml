@@ -1,0 +1,52 @@
+name: env_r
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - r-base
+  - r-optparse
+  # Core tidyverse
+  - r-readr
+  - r-dplyr
+  - r-tidyr
+  - r-stringr
+  - r-ggplot2
+  - r-forcats
+  - r-tibble
+  - r-purrr
+  - r-tidyverse
+  # Bioconductor packages
+  - bioconductor-deseq2
+  - bioconductor-tximport
+  - bioconductor-rtracklayer
+  - bioconductor-annotationdbi
+  - bioconductor-org.rn.eg.db
+  - bioconductor-clusterprofiler
+  - bioconductor-mfuzz
+  - bioconductor-biobase
+  - bioconductor-biostrings
+  - bioconductor-sva
+  - bioconductor-apeglm
+  - bioconductor-enhancedvolcano
+  - bioconductor-complexheatmap
+  # Bioconductor enrichment
+  - bioconductor-dose
+  - bioconductor-enrichplot
+  # Supporting visualization & data
+  - r-pheatmap
+  - r-rcolorbrewer
+  - r-ggrepel
+  - r-scales
+  - r-upsetr
+  - r-ggvenn
+  - r-cowplot
+  - r-gridextra
+  - r-calibrate
+  - r-gplots
+  - r-circlize
+  - r-genefilter
+  - r-readxl
+  - r-mass
+  - r-biomart
+  - r-hmisc

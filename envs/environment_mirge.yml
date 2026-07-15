@@ -1,0 +1,10 @@
+name: env_mirge
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - mirge3
+  # Common utilities
+  - python
+  - pip

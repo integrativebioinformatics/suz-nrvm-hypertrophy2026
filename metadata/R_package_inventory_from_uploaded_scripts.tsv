@@ -1,0 +1,40 @@
+package	n_scripts	scripts
+readr	17	R_scripts/05_Figure3_mRNA_programs.R; R_scripts/06_Figure4_refine_heatmap_hubs.R; R_scripts/07_Figure4_clean_volcanoes.R; R_scripts/08_Figure7_ceRNA_IntaRNA_scaffold.R; R_scripts/09_extract_lncRNA_candidates_for_IntaRNA.R; R_scripts/12_ceRNA_coherent_pairs_and_triplets_cleanFinal.R; R_scripts/13_generate_paper_results_report_v2.R; R_scripts/Comparación_Cinética_6_24.R; R_scripts/Figure8_ceRNA_rebuild_with_QC.R; R_scripts/Figure8_ceRNA_rebuild_with_QC_v2.R; R_scripts/Figure8_ceRNA_rebuild_with_QC_v3.R; R_scripts/Integrated_Bulk_v3_6_24h.R; R_scripts/Versión_Nueva_Nov.R; R_scripts/miRNA_DEG_ceRNAs.R; R_scripts/miRNAs_6_24.R; R_scripts/script_final_depurado_TF_KEGG.R; R_scripts/script_miRNA_mRNA_6_24.R
+ggplot2	14	R_scripts/05_Figure3_mRNA_programs.R; R_scripts/06_Figure4_refine_heatmap_hubs.R; R_scripts/07_Figure4_clean_volcanoes.R; R_scripts/08_Figure7_ceRNA_IntaRNA_scaffold.R; R_scripts/12_ceRNA_coherent_pairs_and_triplets_cleanFinal.R; R_scripts/Comparación_Cinética_6_24.R; R_scripts/Figure8_ceRNA_rebuild_with_QC.R; R_scripts/Figure8_ceRNA_rebuild_with_QC_v2.R; R_scripts/Figure8_ceRNA_rebuild_with_QC_v3.R; R_scripts/Integrated_Bulk_v3_6_24h.R; R_scripts/miRNA_DEG_ceRNAs.R; R_scripts/miRNAs_6_24.R; R_scripts/script_final_depurado_TF_KEGG.R; R_scripts/script_miRNA_mRNA_6_24.R
+stringr	14	R_scripts/05_Figure3_mRNA_programs.R; R_scripts/06_Figure4_refine_heatmap_hubs.R; R_scripts/07_Figure4_clean_volcanoes.R; R_scripts/08_Figure7_ceRNA_IntaRNA_scaffold.R; R_scripts/09_extract_lncRNA_candidates_for_IntaRNA.R; R_scripts/12_ceRNA_coherent_pairs_and_triplets_cleanFinal.R; R_scripts/13_generate_paper_results_report_v2.R; R_scripts/18_curated_Fig4A_Fig6C_from_shortlist.R; R_scripts/Figure8_ceRNA_rebuild_with_QC.R; R_scripts/Figure8_ceRNA_rebuild_with_QC_v2.R; R_scripts/Figure8_ceRNA_rebuild_with_QC_v3.R; R_scripts/Integrated_Bulk_v3_6_24h.R; R_scripts/script_final_depurado_TF_KEGG.R; R_scripts/script_miRNA_mRNA_6_24.R
+tidyverse	14	R_scripts/12_ceRNA_coherent_pairs_and_triplets_cleanFinal.R; R_scripts/14_FEELnc_supplement_panels.R; R_scripts/15_lncRNA_characterization_from_GTF.R; R_scripts/16_lncRNA_characterization_curatedCSV_only.R; R_scripts/17_redraw_remaining_panels_Fig4_Fig5_Fig6.R; R_scripts/18_curated_Fig4A_Fig6C_from_shortlist.R; R_scripts/Comparación_Cinética_6_24.R; R_scripts/Figure8_ceRNA_rebuild_with_QC.R; R_scripts/Figure8_ceRNA_rebuild_with_QC_v2.R; R_scripts/Figure8_ceRNA_rebuild_with_QC_v3.R; R_scripts/Integrated_Bulk_v3_6_24h.R; R_scripts/Versión_Nueva_Nov.R; R_scripts/miRNA_DEG_ceRNAs.R; R_scripts/script_miRNA_mRNA_6_24.R
+dplyr	13	R_scripts/05_Figure3_mRNA_programs.R; R_scripts/06_Figure4_refine_heatmap_hubs.R; R_scripts/07_Figure4_clean_volcanoes.R; R_scripts/08_Figure7_ceRNA_IntaRNA_scaffold.R; R_scripts/09_extract_lncRNA_candidates_for_IntaRNA.R; R_scripts/13_generate_paper_results_report_v2.R; R_scripts/Comparación_Cinética_6_24.R; R_scripts/Integrated_Bulk_v3_6_24h.R; R_scripts/MASTER_results_report_builder_v3_8_1.R; R_scripts/miRNA_DEG_ceRNAs.R; R_scripts/miRNAs_6_24.R; R_scripts/script_final_depurado_TF_KEGG.R; R_scripts/script_miRNA_mRNA_6_24.R
+tidyr	9	R_scripts/05_Figure3_mRNA_programs.R; R_scripts/06_Figure4_refine_heatmap_hubs.R; R_scripts/08_Figure7_ceRNA_IntaRNA_scaffold.R; R_scripts/09_extract_lncRNA_candidates_for_IntaRNA.R; R_scripts/13_generate_paper_results_report_v2.R; R_scripts/Integrated_Bulk_v3_6_24h.R; R_scripts/miRNA_DEG_ceRNAs.R; R_scripts/script_final_depurado_TF_KEGG.R; R_scripts/script_miRNA_mRNA_6_24.R
+tibble	8	R_scripts/05_Figure3_mRNA_programs.R; R_scripts/06_Figure4_refine_heatmap_hubs.R; R_scripts/08_Figure7_ceRNA_IntaRNA_scaffold.R; R_scripts/13_generate_paper_results_report_v2.R; R_scripts/Integrated_Bulk_v3_6_24h.R; R_scripts/MASTER_results_report_builder_v3_8_1.R; R_scripts/miRNA_DEG_ceRNAs.R; R_scripts/miRNAs_6_24.R
+ggrepel	7	R_scripts/05_Figure3_mRNA_programs.R; R_scripts/07_Figure4_clean_volcanoes.R; R_scripts/08_Figure7_ceRNA_IntaRNA_scaffold.R; R_scripts/Comparación_Cinética_6_24.R; R_scripts/Integrated_Bulk_v3_6_24h.R; R_scripts/miRNA_DEG_ceRNAs.R; R_scripts/miRNAs_6_24.R
+pheatmap	5	R_scripts/Comparación_Cinética_6_24.R; R_scripts/Integrated_Bulk_v3_6_24h.R; R_scripts/Versión_Nueva_Nov.R; R_scripts/miRNA_DEG_ceRNAs.R; R_scripts/miRNAs_6_24.R
+DESeq2	4	R_scripts/Comparación_Cinética_6_24.R; R_scripts/Integrated_Bulk_v3_6_24h.R; R_scripts/miRNA_DEG_ceRNAs.R; R_scripts/miRNAs_6_24.R
+RColorBrewer	4	R_scripts/Comparación_Cinética_6_24.R; R_scripts/Integrated_Bulk_v3_6_24h.R; R_scripts/miRNA_DEG_ceRNAs.R; R_scripts/miRNAs_6_24.R
+forcats	4	R_scripts/05_Figure3_mRNA_programs.R; R_scripts/06_Figure4_refine_heatmap_hubs.R; R_scripts/script_final_depurado_TF_KEGG.R; R_scripts/script_miRNA_mRNA_6_24.R
+org.Rn.eg.db	4	R_scripts/Comparación_Cinética_6_24.R; R_scripts/Integrated_Bulk_v3_6_24h.R; R_scripts/Versión_Nueva_Nov.R; R_scripts/miRNA_DEG_ceRNAs.R
+scales	4	R_scripts/16_lncRNA_characterization_curatedCSV_only.R; R_scripts/17_redraw_remaining_panels_Fig4_Fig5_Fig6.R; R_scripts/18_curated_Fig4A_Fig6C_from_shortlist.R; R_scripts/script_final_depurado_TF_KEGG.R
+tximport	4	R_scripts/Comparación_Cinética_6_24.R; R_scripts/Integrated_Bulk_v3_6_24h.R; R_scripts/Versión_Nueva_Nov.R; R_scripts/miRNA_DEG_ceRNAs.R
+apeglm	3	R_scripts/Comparación_Cinética_6_24.R; R_scripts/Integrated_Bulk_v3_6_24h.R; R_scripts/miRNA_DEG_ceRNAs.R
+clusterProfiler	3	R_scripts/Comparación_Cinética_6_24.R; R_scripts/Integrated_Bulk_v3_6_24h.R; R_scripts/miRNA_DEG_ceRNAs.R
+purrr	3	R_scripts/06_Figure4_refine_heatmap_hubs.R; R_scripts/13_generate_paper_results_report_v2.R; R_scripts/MASTER_results_report_builder_v3_8_1.R
+rtracklayer	3	R_scripts/Comparación_Cinética_6_24.R; R_scripts/Integrated_Bulk_v3_6_24h.R; R_scripts/miRNA_DEG_ceRNAs.R
+AnnotationDbi	2	R_scripts/Comparación_Cinética_6_24.R; R_scripts/miRNA_DEG_ceRNAs.R
+Biobase	2	R_scripts/Integrated_Bulk_v3_6_24h.R; R_scripts/miRNAs_6_24.R
+EnhancedVolcano	2	R_scripts/Comparación_Cinética_6_24.R; R_scripts/miRNA_DEG_ceRNAs.R
+Mfuzz	2	R_scripts/Integrated_Bulk_v3_6_24h.R; R_scripts/miRNAs_6_24.R
+UpSetR	2	R_scripts/Integrated_Bulk_v3_6_24h.R; R_scripts/miRNAs_6_24.R
+biomaRt	2	R_scripts/Comparación_Cinética_6_24.R; R_scripts/miRNA_DEG_ceRNAs.R
+enrichplot	2	R_scripts/Versión_Nueva_Nov.R; R_scripts/miRNA_DEG_ceRNAs.R
+sva	2	R_scripts/miRNA_DEG_ceRNAs.R; R_scripts/miRNAs_6_24.R
+Biostrings	1	R_scripts/script_miRNA_mRNA_6_24.R
+ComplexHeatmap	1	R_scripts/miRNA_DEG_ceRNAs.R
+DOSE	1	R_scripts/miRNA_DEG_ceRNAs.R
+MASS	1	R_scripts/miRNA_DEG_ceRNAs.R
+calibrate	1	R_scripts/miRNA_DEG_ceRNAs.R
+circlize	1	R_scripts/miRNA_DEG_ceRNAs.R
+cowplot	1	R_scripts/miRNA_DEG_ceRNAs.R
+genefilter	1	R_scripts/miRNA_DEG_ceRNAs.R
+ggvenn	1	R_scripts/Integrated_Bulk_v3_6_24h.R
+gplots	1	R_scripts/miRNA_DEG_ceRNAs.R
+gridExtra	1	R_scripts/miRNA_DEG_ceRNAs.R
+readxl	1	R_scripts/miRNA_DEG_ceRNAs.R
