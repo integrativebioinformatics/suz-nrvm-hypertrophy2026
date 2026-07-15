@@ -259,7 +259,7 @@ All 14 R scripts include:
 - [ ] **TFLink All reference:** Path/source + checksum (large file; coordinate upload separately)
 - [ ] Optional: Backup hard drive paths for FASTQ redundancy (for fastq_manifest.tsv)
 
-- [ ] Include characterization scripts and notebooks that have generated metadata files used in Rscript 01
+- [ ] Include characterization scripts and notebooks that have generated metadata files used in Rscript 01; this is related to the script `archive/raw_scripts_original/NE_NRVM_all_scripts_raw/R_scripts/16_lncRNA_characterization_curatedCSV_only.R` that I forgot to include together with Rscript 06.
 
 **Testing & Validation:**
 
